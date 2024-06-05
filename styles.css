@@ -12,6 +12,7 @@ body {
   height: 250px;
   border: 1px solid black;
   overflow: hidden;
+  position: relative;
 }
 
 /* PLAYER ********************************************************************/
@@ -19,9 +20,9 @@ body {
 #player {
   width: 88px;
   height: 84px;
-  position: relative;
-  top: calc(250px - 84px);
+  position: absolute;
   left: 50px;
+  bottom: 0;
   background-image: url('assets/chicken-spritesheet.png');
 }
 
@@ -49,9 +50,9 @@ body {
 .fox {
   width: 128px;
   height: 69px;
-  position: relative;
-  top: 95px;
+  position: absolute;
   left: 640px;
+  bottom: 0;
   background-image: url('assets/fox-spritesheet.png');
   animation:  fox-walk .6s steps(8, end) infinite,
               to-left 2s linear 1;
