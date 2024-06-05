@@ -1,3 +1,5 @@
+/* GENERAL DISPLAY ***********************************************************/
+
 body {
   height: 80vh;
   display: flex;
@@ -9,8 +11,10 @@ body {
   width: 640px;
   height: 250px;
   border: 1px solid black;
-  transform-origin: bottom left;
+  overflow: hidden;
 }
+
+/* PLAYER ********************************************************************/
 
 #player {
   width: 88px;
@@ -27,7 +31,7 @@ body {
 
 .jump {
   background-position: -1200% 0;
-  animation: jump cubic-bezier(0.7, .1, .1, 0.7) 600ms 1;
+  animation: jump cubic-bezier(.2,1.11,1,1) 700ms 1;
 }
 
 @keyframes run {
@@ -38,4 +42,25 @@ body {
   0%,
   100%  {transform: translateY(0);}
   50%   {transform: translateY(-130px);}
+}
+
+/* MOBS **********************************************************************/
+
+.fox {
+  width: 128px;
+  height: 69px;
+  position: relative;
+  top: 95px;
+  left: 640px;
+  background-image: url('assets/fox-spritesheet.png');
+  animation:  fox-walk .6s steps(8, end) infinite,
+              to-left 2s linear 1;
+}
+
+@keyframes fox-walk {
+  to {background-position: -800% 0;};
+}
+
+@keyframes to-left {
+  to {left: -128px;}
 }

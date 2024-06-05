@@ -1,11 +1,10 @@
 const player = document.querySelector('#player');
 
 const jump = () => {
-	const currentAnim = player.getAnimations()[0]?.animationName;
-	if (currentAnim !== 'jump') {
-		player.classList = 'jump';
-		setTimeout(() => player.classList = 'run', 600);
-	}
+	if (player.getAnimations()[0]?.animationName == 'jump') return;
+
+	player.classList = 'jump';
+	setTimeout(() => player.classList = 'run', 600);
 }
 
 // CONTROLS (only jump)
