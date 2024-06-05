@@ -1,0 +1,41 @@
+body {
+  height: 80vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#game {
+  width: 640px;
+  height: 250px;
+  border: 1px solid black;
+  transform-origin: bottom left;
+}
+
+#player {
+  width: 88px;
+  height: 84px;
+  position: relative;
+  top: calc(250px - 84px);
+  left: 50px;
+  background-image: url('assets/chicken-spritesheet.png');
+}
+
+.run {
+  animation: run .6s steps(6, end) infinite;
+}
+
+.jump {
+  background-position: -1200% 0;
+  animation: jump cubic-bezier(0.7, .1, .1, 0.7) 600ms 1;
+}
+
+@keyframes run {
+  to {background-position: -1200% 0;}
+}
+
+@keyframes jump {
+  0%,
+  100%  {transform: translateY(0);}
+  50%   {transform: translateY(-130px);}
+}
