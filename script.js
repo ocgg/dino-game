@@ -43,8 +43,8 @@ document.addEventListener('keydown', checkKeys);
 // OBSTACLES ##########################
 
 const addObstacle = () => {
-	const obstacle = document.createElement('img');
-	obstacle.src = 'assets/stone.png';
+	const obstacle = document.createElement('div');
+	obstacle.style.backgroundImage = 'url(assets/stone.png)';
 	obstacle.classList.add('sprite', 'rock');
 	obstacles.push(obstacle)
 	gameContainer.prepend(obstacle);
