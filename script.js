@@ -1,6 +1,8 @@
 const gameContainer = document.getElementById('game');
 const player = document.getElementById('player');
 const obstacles = [];
+const scoreElt = document.getElementById('score');
+let score = 0;
 
 // GAME ###############################
 
@@ -8,6 +10,7 @@ const endGame = () => {
 	// Stop game loops & event listener
 	clearInterval(mainLoopInterval);
 	clearTimeout(obstacleGeneration);
+  clearInterval(scoreInterval);
 	document.removeEventListener('keydown', checkKeys);
 	// Stop animations
 	allAnimations = [
@@ -31,7 +34,7 @@ const jump = () => {
 		if (!player.classList.contains("dead")) {
       player.classList.remove('jump')
     }
-	}, 800);
+	}, 750);
 }
 
 const checkKeys = (event) => {
@@ -100,3 +103,12 @@ const obstacleGenerationCallaback = () => {
 
 let nextTime = 2000;
 let obstacleGeneration = setTimeout(obstacleGenerationCallaback, nextTime);
+
+// SCORE ##############################
+
+const updateScore = () => {
+  score += 10;
+  scoreElt.innerText = score;
+}
+
+const scoreInterval = setInterval(updateScore, 250);
