@@ -67,7 +67,6 @@ body {
 }
 
 .dead {
-  /* hue red */
   filter: hue-rotate(180deg);
 }
 
@@ -92,12 +91,11 @@ body {
 }
 
 .fox {
-  width: 128px;
-  height: 69px;
-  right: -128px;
-  /* background-image: url('assets/fox-spritesheet.png'); */
+  width: 100px;
+  height: 54px;
+  right: -100px;
   animation:  fox-walk .6s steps(8, end) infinite,
-              to-left 1.8s linear 1 forwards;
+              to-left 1.6s linear 1 forwards;
 }
 
 @keyframes fox-walk {
