@@ -15,9 +15,14 @@ body {
   box-sizing: border-box;
   overflow: hidden;
   position: relative;
-  background: url('assets/sky.png');
-  background-size: cover;
+  background: url('assets/sky.png') repeat-x;
+  animation: bg-scroll 10s linear infinite;
 }
+
+@keyframes bg-scroll {
+  to {background-position-x: -640px}
+}
+
 
 #ground {
   width: 100%;
