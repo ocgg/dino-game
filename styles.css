@@ -9,10 +9,20 @@ body {
 
 #game {
   width: 640px;
+  min-width: 640px;
   height: 250px;
   border: 1px solid black;
+  box-sizing: border-box;
   overflow: hidden;
   position: relative;
+}
+
+#gameover {
+  text-align: center;
+  color: red;
+  display: none;
+
+  p { color: black }
 }
 
 /* PLAYER ********************************************************************/
@@ -32,7 +42,12 @@ body {
 
 .jump {
   background-position: -1200% 0;
-  animation: jump cubic-bezier(.2,1.11,1,1) 700ms 1;
+  animation: jump cubic-bezier(0.27, 0.47, 0.57, 0.92) 800ms 1;
+}
+
+.dead {
+  /* hue red */
+  filter: hue-rotate(180deg);
 }
 
 @keyframes run {
@@ -41,27 +56,38 @@ body {
 
 @keyframes jump {
   0%,
-  100%  {transform: translateY(0);}
-  50%   {transform: translateY(-130px);}
+  100%  {transform: translateY(0)}
+  45%   {transform: translateY(-150px)}
 }
 
-/* MOBS **********************************************************************/
+/* OBSTACLES *****************************************************************/
+
+.obstacle {
+  position: absolute;
+  bottom: 0;
+}
+
+.rock {
+  width: 60px;
+  height: 34px;
+  right: -60px;
+  /* background-image: url('assets/stone.png'); */
+  animation: to-left 1.8s linear 1 forwards;
+}
 
 .fox {
   width: 128px;
   height: 69px;
-  position: absolute;
-  left: 640px;
-  bottom: 0;
-  background-image: url('assets/fox-spritesheet.png');
+  right: -128px;
+  /* background-image: url('assets/fox-spritesheet.png'); */
   animation:  fox-walk .6s steps(8, end) infinite,
-              to-left 2s linear 1;
+              to-left 1.8s linear 1 forwards;
 }
 
 @keyframes fox-walk {
-  to {background-position: -800% 0;};
+  to {background-position: -800% 0};
 }
 
 @keyframes to-left {
-  to {left: -128px;}
+  to {right: 640px}
 }

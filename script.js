@@ -1,7 +1,24 @@
-const gameContainer = document.querySelector('#game');
-const player = document.querySelector('#player');
-let lastObstacleTime = new Date;
+const gameContainer = document.getElementById('game');
+const player = document.getElementById('player');
 const obstacles = [];
+
+// GAME ###############################
+
+const endGame = () => {
+	// Stop game loops & event listener
+	clearInterval(mainLoopInterval);
+	clearInterval(obstacleGenerationInterval);
+	document.removeEventListener('keydown', checkKeys);
+	// Stop animations
+	allAnimations = [
+		...obstacles.flatMap(obstacle => obstacle.getAnimations()),
+		...player.getAnimations()
+	];
+	allAnimations.forEach(animation => animation.pause());
+	player.classList = 'dead';
+	document.addEventListener('keydown', location.reload.bind(window.location));
+	document.getElementById('gameover').style.display = 'block';
+}
 
 // CONTROLS ###########################
 
@@ -9,63 +26,55 @@ const jump = () => {
 	if (player.getAnimations()[0]?.animationName == 'jump') return;
 
 	player.classList = 'jump';
-	setTimeout(() => player.classList = 'run', 600);
+	setTimeout(() => {
+		if (!player.classList.contains("dead")) player.classList = 'run'
+	}, 800);
 }
 
-document.addEventListener('keydown', (event) => {
+const checkKeys = (event) => {
 	if (['ArrowUp', ' '].includes(event.key)) jump();
-});
+}
+
+document.addEventListener('keydown', checkKeys);
 
 // OBSTACLES ##########################
 
 const addObstacle = () => {
-	const obstacle = document.createElement('div');
-	obstacle.classList.add('fox');
-	obstacles.unshift(obstacle)
+	const obstacle = document.createElement('img');
+	obstacle.src = 'assets/stone.png';
+	obstacle.classList.add('obstacle', 'rock');
+	obstacles.push(obstacle)
 	gameContainer.prepend(obstacle);
-	lastObstacleTime = new Date;
-	setTimeout(() => {
-		obstacle.remove();
-		obstacles.pop();
-	}, 2000);;
 }
 
 // COLLISIONS #########################
 
-const checkCollision = () => {
+const checkCollision = (obstacle, obstacleBody) => {
 	const playerBody = player.getBoundingClientRect();
-	if (obstacles.length === 0) return;
 
-	obstacleBody = obstacles[obstacles.length - 1].getBoundingClientRect();
+	// "+ 35" est un offset pour empecher la collision au niveau de l'espace vide
+	// derrière les pattes
 	return !(playerBody.right < obstacleBody.left || 
-				 playerBody.left > obstacleBody.right || 
-				 playerBody.bottom < obstacleBody.top);
+					 playerBody.left + 35 > obstacleBody.right || 
+					 playerBody.bottom < obstacleBody.top);
 }
 
 // MAIN LOOP ##########################
 
-let obstacleWaiting = false
-
 const mainLoop = () => {
-	const collides = checkCollision();
-	if (collides) {
-		clearInterval(mainLoopInterval);
-		animations = obstacles.map(obstacle => obstacle.getAnimations()).flat()
-		animations.push(...player.getAnimations());
-		console.log(animations)
-		animations.forEach(animation => animation.cancel());
+	const firstObstacle = obstacles[0];
+	if (!firstObstacle) return;
+
+	const obstacleBody = firstObstacle.getBoundingClientRect();
+
+	// Check if collides (player loses)
+	if (checkCollision(firstObstacle, obstacleBody)) endGame();
+	// remove obstacle if out of gameContainer
+	else if (obstacleBody.right < gameContainer.getBoundingClientRect().left) {
+		firstObstacle.remove();
+		obstacles.shift();
 	}
-
-	const now = new Date;
-	if (obstacleWaiting || now - lastObstacleTime < 500) return;
-
-	obstacleWaiting = true;
-	const randTime = Math.random() * 2000 + 1;
-
-	setTimeout(() => {
-		addObstacle();
-		obstacleWaiting = false;
-	}, randTime);
 }
 
 const mainLoopInterval = setInterval(() => mainLoop(), 100);
+const obstacleGenerationInterval = setInterval(() => addObstacle(), 1500);
