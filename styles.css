@@ -10,11 +10,23 @@ body {
 #game {
   width: 640px;
   min-width: 640px;
-  height: 250px;
+  height: 300px;
   border: 1px solid black;
   box-sizing: border-box;
   overflow: hidden;
   position: relative;
+  background: url('assets/sky.png');
+  background-size: cover;
+}
+
+#ground {
+  width: 100%;
+  height: 45px;
+  position: absolute;
+  z-index: 1;
+  bottom: 0;
+  background: url('assets/bg-tile.png');
+  background-repeat: repeat-x;
 }
 
 #gameover {
@@ -25,14 +37,18 @@ body {
   p { color: black }
 }
 
+.sprite {
+  z-index: 10;
+  position: absolute;
+  bottom: 35px;
+}
+
 /* PLAYER ********************************************************************/
 
 #player {
   width: 88px;
   height: 84px;
-  position: absolute;
   left: 50px;
-  bottom: 0;
   background-image: url('assets/chicken-spritesheet.png');
 }
 
@@ -61,11 +77,6 @@ body {
 }
 
 /* OBSTACLES *****************************************************************/
-
-.obstacle {
-  position: absolute;
-  bottom: 0;
-}
 
 .rock {
   width: 60px;

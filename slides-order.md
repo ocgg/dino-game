@@ -35,8 +35,14 @@
 - On veut un truc visuel: joueur change de couleur par ex.
 - On veut un texte à l'écran, "Game over"
 
+### Partie 6: un peu de déco
+
+- Background
+- Déco ?
+
 ### Partie 5: Aller plus loin
 
-- Background, déco
 - Affichage du score
 - D'autres ennemis (fox, chauve-souris)
+- Génération d'obstacles aléatoires
+- Temps aléatoire de génération d'obstacle

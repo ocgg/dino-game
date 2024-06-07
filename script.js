@@ -15,7 +15,7 @@ const endGame = () => {
 		...player.getAnimations()
 	];
 	allAnimations.forEach(animation => animation.pause());
-	player.classList = 'dead';
+	player.classList.add('dead');
 	document.addEventListener('keydown', location.reload.bind(window.location));
 	document.getElementById('gameover').style.display = 'block';
 }
@@ -25,9 +25,11 @@ const endGame = () => {
 const jump = () => {
 	if (player.getAnimations()[0]?.animationName == 'jump') return;
 
-	player.classList = 'jump';
+	player.classList.add('jump');
 	setTimeout(() => {
-		if (!player.classList.contains("dead")) player.classList = 'run'
+		if (!player.classList.contains("dead")) {
+      player.classList.remove('jump')
+    }
 	}, 800);
 }
 
@@ -42,7 +44,7 @@ document.addEventListener('keydown', checkKeys);
 const addObstacle = () => {
 	const obstacle = document.createElement('img');
 	obstacle.src = 'assets/stone.png';
-	obstacle.classList.add('obstacle', 'rock');
+	obstacle.classList.add('sprite', 'rock');
 	obstacles.push(obstacle)
 	gameContainer.prepend(obstacle);
 }
