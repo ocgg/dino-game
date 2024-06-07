@@ -21,7 +21,7 @@ document.addEventListener('keydown', (event) => {
 const addObstacle = () => {
 	const obstacle = document.createElement('div');
 	obstacle.classList.add('fox');
-	obstacles.push(obstacle)
+	obstacles.unshift(obstacle)
 	gameContainer.prepend(obstacle);
 	lastObstacleTime = new Date;
 	setTimeout(() => {
@@ -34,19 +34,12 @@ const addObstacle = () => {
 
 const checkCollision = () => {
 	const playerBody = player.getBoundingClientRect();
-	obstacleBody = obstacles[-1].getBoundingClientRect();
-	console.log(playerBody.right < obstacleBody.left || 
-						 playerBody.left > obstacleBody.right || 
-						 playerBody.bottom < obstacleBody.top || 
-						 playerBody.top > obstacleBody.bottom);
+	if (obstacles.length === 0) return;
 
-	// obstacles.forEach(obstacle => {
-	// 	obstacleBody = obstacle.getBoundingClientRect();
-	// 	console.log(playerBody.right < obstacleBody.left || 
- //           playerBody.left > obstacleBody.right || 
- //           playerBody.bottom < obstacleBody.top || 
- //           playerBody.top > obstacleBody.bottom);
-	// });
+	obstacleBody = obstacles[obstacles.length - 1].getBoundingClientRect();
+	return !(playerBody.right < obstacleBody.left || 
+				 playerBody.left > obstacleBody.right || 
+				 playerBody.bottom < obstacleBody.top);
 }
 
 // MAIN LOOP ##########################
@@ -55,6 +48,13 @@ let obstacleWaiting = false
 
 const mainLoop = () => {
 	const collides = checkCollision();
+	if (collides) {
+		clearInterval(mainLoopInterval);
+		animations = obstacles.map(obstacle => obstacle.getAnimations()).flat()
+		animations.push(...player.getAnimations());
+		console.log(animations)
+		animations.forEach(animation => animation.cancel());
+	}
 
 	const now = new Date;
 	if (obstacleWaiting || now - lastObstacleTime < 500) return;
@@ -68,4 +68,4 @@ const mainLoop = () => {
 	}, randTime);
 }
 
-setInterval(() => mainLoop(), 100);
+const mainLoopInterval = setInterval(() => mainLoop(), 100);
