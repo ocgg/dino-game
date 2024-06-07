@@ -7,7 +7,7 @@ const obstacles = [];
 const endGame = () => {
 	// Stop game loops & event listener
 	clearInterval(mainLoopInterval);
-	clearInterval(obstacleGenerationInterval);
+	clearTimeout(obstacleGeneration);
 	document.removeEventListener('keydown', checkKeys);
 	// Stop animations
 	allAnimations = [
@@ -80,4 +80,13 @@ const mainLoop = () => {
 }
 
 const mainLoopInterval = setInterval(() => mainLoop(), 100);
-const obstacleGenerationInterval = setInterval(() => addObstacle(), 1500);
+// const obstacleGenerationInterval = setInterval(() => addObstacle(), 1500);
+
+const obstacleGenerationCallaback = () => {
+  nextTime = Math.random() * 1200 + 800;
+  addObstacle();
+  setTimeout(obstacleGenerationCallaback, nextTime);
+}
+
+let nextTime = 2000;
+const obstacleGeneration = setTimeout(obstacleGenerationCallaback, nextTime);
