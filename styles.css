@@ -94,7 +94,26 @@ body {
   height: 54px;
   right: -100px;
   animation:  fox-walk .6s steps(8, end) infinite,
-              to-left 1.6s linear 1 forwards;
+              to-left 1.4s linear 1 forwards;
+}
+
+.bat {
+  width: 93px;
+  height: 43px;
+  right: -93px;
+  bottom: 100px;
+  animation:  bat-fly .4s steps(8, end) infinite,
+              bat-fly-movement 1.4s linear infinite,
+              to-left 1.8s linear 1 forwards;
+}
+
+@keyframes bat-fly {
+  to {background-position: -800% 0};
+}
+
+@keyframes bat-fly-movement {
+  0%, 100% {bottom: 150px};
+  50% {bottom: 180px};
 }
 
 @keyframes fox-walk {

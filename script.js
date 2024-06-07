@@ -43,7 +43,7 @@ document.addEventListener('keydown', checkKeys);
 // OBSTACLES ##########################
 
 const generateObstacle = () => {
-  const names = ['rock', 'fox'];
+  const names = ['rock', 'fox', 'bat'];
   const name = names[Math.floor(Math.random() * names.length)];
 	const obstacle = document.createElement('div');
   obstacle.style.backgroundImage = `url(assets/${name}.png)`;
@@ -64,9 +64,12 @@ const checkCollision = (obstacle, obstacleBody) => {
 
 	// "+ 35" est un offset pour empecher la collision au niveau de l'espace vide
 	// derrière les pattes
-	return !(playerBody.right < obstacleBody.left || 
-					 playerBody.left + 35 > obstacleBody.right || 
-					 playerBody.bottom - 8 < obstacleBody.top);
+	return !(
+    playerBody.right < obstacleBody.left || 
+		playerBody.left + 35 > obstacleBody.right || 
+		playerBody.bottom - 8 < obstacleBody.top ||
+    playerBody.top > obstacleBody.bottom
+  );
 }
 
 // MAIN LOOP ##########################
@@ -92,8 +95,8 @@ const mainLoopInterval = setInterval(() => mainLoop(), 100);
 const obstacleGenerationCallaback = () => {
   nextTime = Math.random() * 1200 + 800;
   addObstacle();
-  setTimeout(obstacleGenerationCallaback, nextTime);
+  obstacleGeneration = setTimeout(obstacleGenerationCallaback, nextTime);
 }
 
 let nextTime = 2000;
-const obstacleGeneration = setTimeout(obstacleGenerationCallaback, nextTime);
+let obstacleGeneration = setTimeout(obstacleGenerationCallaback, nextTime);
