@@ -42,10 +42,17 @@ document.addEventListener('keydown', checkKeys);
 
 // OBSTACLES ##########################
 
-const addObstacle = () => {
+const generateObstacle = () => {
+  const names = ['rock', 'fox'];
+  const name = names[Math.floor(Math.random() * names.length)];
 	const obstacle = document.createElement('div');
-	obstacle.style.backgroundImage = 'url(assets/stone.png)';
-	obstacle.classList.add('sprite', 'rock');
+  obstacle.style.backgroundImage = `url(assets/${name}.png)`;
+	obstacle.classList.add('sprite', name);
+  return obstacle;
+}
+
+const addObstacle = () => {
+	const obstacle = generateObstacle();
 	obstacles.push(obstacle)
 	gameContainer.prepend(obstacle);
 }
@@ -59,7 +66,7 @@ const checkCollision = (obstacle, obstacleBody) => {
 	// derrière les pattes
 	return !(playerBody.right < obstacleBody.left || 
 					 playerBody.left + 35 > obstacleBody.right || 
-					 playerBody.bottom < obstacleBody.top);
+					 playerBody.bottom - 8 < obstacleBody.top);
 }
 
 // MAIN LOOP ##########################
