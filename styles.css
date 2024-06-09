@@ -17,17 +17,14 @@ body {
   position: relative;
 }
 
-.sprite {
-  position: absolute;
-  bottom: 0;
-}
-
 /* PLAYER ********************************************************************/
 
 #player {
+  position: absolute;
   width: 88px;
   height: 84px;
   left: 50px;
+  bottom: 0;
   background-image: url('assets/chicken-spritesheet.png');
 }
 
@@ -53,13 +50,9 @@ body {
 /* OBSTACLES *****************************************************************/
 
 .rock {
+  position: absolute;
   width: 60px;
   height: 34px;
-  right: -60px;
+  bottom: 0;
   background-image: url('assets/rock.png');
-  animation: to-left 1.8s linear 1 forwards;
-}
-
-@keyframes to-left {
-  to {right: 640px}
 }

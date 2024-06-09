@@ -1,4 +1,3 @@
-const gameContainer = document.getElementById('game');
 const player = document.getElementById('player');
 
 // CONTROLS ###########################
