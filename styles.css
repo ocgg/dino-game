@@ -40,10 +40,6 @@ body {
   animation: jump cubic-bezier(0.27, 0.47, 0.57, 0.92) 800ms 1;
 }
 
-.dead {
-  filter: hue-rotate(180deg);
-}
-
 @keyframes run {
   to {background-position: -1200% 0;}
 }

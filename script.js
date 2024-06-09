@@ -2,40 +2,18 @@ const gameContainer = document.getElementById('game');
 const player = document.getElementById('player');
 const obstacles = [];
 
-// GAME ###############################
-
-const endGame = () => {
-	// Stop game loops & event listener
-	clearInterval(mainLoopInterval);
-	clearInterval(obstacleGenerationInterval);
-	document.removeEventListener('keydown', checkKeys);
-	// Stop animations
-	allAnimations = [
-		...obstacles.flatMap(obstacle => obstacle.getAnimations()),
-		...player.getAnimations(),
-	];
-	allAnimations.forEach(animation => animation.pause());
-	player.classList.add('dead');
-}
-
 // CONTROLS ###########################
 
 const jump = () => {
 	if (player.getAnimations()[0]?.animationName == 'jump') return;
 
 	player.classList.add('jump');
-	setTimeout(() => {
-		if (!player.classList.contains("dead")) {
-      player.classList.remove('jump')
-    }
-	}, 750);
+	setTimeout(() => player.classList.remove('jump'), 750);
 }
 
-const checkKeys = (event) => {
+document.addEventListener('keydown', (event) => {
 	if (['ArrowUp', ' '].includes(event.key)) jump();
-}
-
-document.addEventListener('keydown', checkKeys);
+});
 
 // OBSTACLES ##########################
 
@@ -70,7 +48,7 @@ const mainLoop = () => {
 	const obstacleBody = firstObstacle.getBoundingClientRect();
 
 	// Check if collides (player loses)
-	if (checkCollision(firstObstacle, obstacleBody)) endGame();
+	if (checkCollision(firstObstacle, obstacleBody)) console.log('collides!');
 	// remove obstacle if out of gameContainer
 	else if (obstacleBody.right < gameContainer.getBoundingClientRect().left) {
 		firstObstacle.remove();
