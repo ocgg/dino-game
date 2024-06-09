@@ -13,9 +13,3 @@ const jump = () => {
 document.addEventListener('keydown', (event) => {
 	if (['ArrowUp', ' '].includes(event.key)) jump();
 });
-
-setInterval(() => {
-	const obstacle = document.createElement('div');
-	obstacle.classList.add('sprite', 'rock');
-	gameContainer.prepend(obstacle);
-}, 1500);
