@@ -13,7 +13,6 @@ body {
   height: 300px;
   border: 1px solid black;
   box-sizing: border-box;
-  overflow: hidden;
   position: relative;
 }
 
@@ -32,17 +31,6 @@ body {
   animation: run .6s steps(6, end) infinite;
 }
 
-.jump {
-  background-position: -1200% 0;
-  animation: jump cubic-bezier(0.27, 0.47, 0.57, 0.92) 800ms 1;
-}
-
 @keyframes run {
   to {background-position: -1200% 0;}
-}
-
-@keyframes jump {
-  0%,
-  100%  {transform: translateY(0)}
-  45%   {transform: translateY(-150px)}
 }
