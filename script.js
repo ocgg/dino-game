@@ -7,7 +7,7 @@ const obstacles = [];
 const endGame = () => {
 	// Stop game loops & event listener
 	clearInterval(mainLoopInterval);
-	clearTimeout(obstacleGeneration);
+	clearInterval(obstacleGenerationInterval);
 	document.removeEventListener('keydown', checkKeys);
 	// Stop animations
 	allAnimations = [
@@ -42,17 +42,9 @@ document.addEventListener('keydown', checkKeys);
 
 // OBSTACLES ##########################
 
-const generateObstacle = () => {
-  const names = ['rock', 'fox', 'bat'];
-  const name = names[Math.floor(Math.random() * names.length)];
-	const obstacle = document.createElement('div');
-  obstacle.style.backgroundImage = `url(assets/${name}.png)`;
-	obstacle.classList.add('sprite', name);
-  return obstacle;
-}
-
 const addObstacle = () => {
-	const obstacle = generateObstacle();
+	const obstacle = document.createElement('div');
+	obstacle.classList.add('sprite', 'rock');
 	obstacles.push(obstacle)
 	gameContainer.prepend(obstacle);
 }
@@ -90,13 +82,4 @@ const mainLoop = () => {
 }
 
 const mainLoopInterval = setInterval(() => mainLoop(), 100);
-// const obstacleGenerationInterval = setInterval(() => addObstacle(), 1500);
-
-const obstacleGenerationCallaback = () => {
-  nextTime = Math.random() * 1200 + 800;
-  addObstacle();
-  obstacleGeneration = setTimeout(obstacleGenerationCallaback, nextTime);
-}
-
-let nextTime = 2000;
-let obstacleGeneration = setTimeout(obstacleGenerationCallaback, nextTime);
+const obstacleGenerationInterval = setInterval(() => addObstacle(), 1500);

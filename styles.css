@@ -87,38 +87,8 @@ body {
   width: 60px;
   height: 34px;
   right: -60px;
+  background-image: url('assets/rock.png');
   animation: to-left 1.8s linear 1 forwards;
-}
-
-.fox {
-  width: 100px;
-  height: 54px;
-  right: -100px;
-  animation:  fox-walk .6s steps(8, end) infinite,
-              to-left 1.5s linear 1 forwards;
-}
-
-.bat {
-  width: 93px;
-  height: 43px;
-  right: -93px;
-  bottom: 100px;
-  animation:  bat-anim .3s steps(8, end) infinite,
-              bat-fly 1s linear infinite,
-              to-left 1.8s linear 1 forwards;
-}
-
-@keyframes bat-anim {
-  to {background-position: -800% 0};
-}
-
-@keyframes bat-fly {
-  0%, 100% {bottom: 150px};
-  50% {bottom: 190px};
-}
-
-@keyframes fox-walk {
-  to {background-position: -800% 0};
 }
 
 @keyframes to-left {
