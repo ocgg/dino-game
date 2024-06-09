@@ -43,6 +43,5 @@
 ### Partie 5: (Optionnel) Aller plus loin
 
 a. Temps aléatoire de génération d'obstacle
-b. D'autres ennemis (fox, chauve-souris)
-c. Génération d'obstacles aléatoires
-d. Affichage du score
+b. D'autres ennemis (fox, chauve-souris) & génération aléatoire
+c. Affichage du score
