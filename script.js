@@ -13,7 +13,6 @@ const endGame = () => {
 	allAnimations = [
 		...obstacles.flatMap(obstacle => obstacle.getAnimations()),
 		...player.getAnimations(),
-    ...gameContainer.getAnimations()
 	];
 	allAnimations.forEach(animation => animation.pause());
 	player.classList.add('dead');
