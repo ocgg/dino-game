@@ -24,21 +24,6 @@ const addObstacle = () => {
 	gameContainer.prepend(obstacle);
 }
 
-// COLLISIONS #########################
-
-const checkCollision = (obstacle, obstacleBody) => {
-	const playerBody = player.getBoundingClientRect();
-
-	// "+ 35" est un offset pour empecher la collision au niveau de l'espace vide
-	// derrière les pattes
-	return !(
-    playerBody.right < obstacleBody.left || 
-		playerBody.left + 35 > obstacleBody.right || 
-		playerBody.bottom - 8 < obstacleBody.top ||
-    playerBody.top > obstacleBody.bottom
-  );
-}
-
 // MAIN LOOP ##########################
 
 const mainLoop = () => {
@@ -47,8 +32,6 @@ const mainLoop = () => {
 
 	const obstacleBody = firstObstacle.getBoundingClientRect();
 
-	// Check if collides (player loses)
-	if (checkCollision(firstObstacle, obstacleBody)) console.log('collides!');
 	// remove obstacle if out of gameContainer
 	else if (obstacleBody.right < gameContainer.getBoundingClientRect().left) {
 		firstObstacle.remove();
