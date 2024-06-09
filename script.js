@@ -16,8 +16,6 @@ const endGame = () => {
 	];
 	allAnimations.forEach(animation => animation.pause());
 	player.classList.add('dead');
-	document.addEventListener('keydown', location.reload.bind(window.location));
-	document.getElementById('gameover').style.display = 'block';
 }
 
 // CONTROLS ###########################

@@ -8,7 +8,6 @@ body {
 }
 
 #game {
-  font-family: monospace;
   width: 640px;
   min-width: 640px;
   height: 300px;
@@ -18,16 +17,7 @@ body {
   position: relative;
 }
 
-#gameover {
-  text-align: center;
-  color: red;
-  display: none;
-
-  p { color: black }
-}
-
 .sprite {
-  z-index: 10;
   position: absolute;
   bottom: 0;
 }
