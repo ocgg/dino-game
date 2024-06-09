@@ -31,7 +31,7 @@
 
 ### Partie 4: gérer la fin du jeu
 
-- On veut que l'écran s'arrête: suppression des intervalles & eventListeners
+- On veut que l`écran s`arrête: suppression des intervalles & eventListeners
 - On veut un truc visuel: joueur change de couleur par ex.
 - On veut un texte à l'écran, "Game over"
 
@@ -40,9 +40,9 @@
 - Background
 - Déco ?
 
-### Partie 5: Aller plus loin
+### Partie 5: (Optionnel) Aller plus loin
 
-- Affichage du score
-- D'autres ennemis (fox, chauve-souris)
-- Génération d'obstacles aléatoires
-- Temps aléatoire de génération d'obstacle
+a. Temps aléatoire de génération d'obstacle
+b. D'autres ennemis (fox, chauve-souris)
+c. Génération d'obstacles aléatoires
+d. Affichage du score
