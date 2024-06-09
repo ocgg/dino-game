@@ -26,11 +26,3 @@ body {
   bottom: 0;
   background-image: url('assets/chicken-spritesheet.png');
 }
-
-.run {
-  animation: run .6s steps(6, end) infinite;
-}
-
-@keyframes run {
-  to {background-position: -1200% 0;}
-}
