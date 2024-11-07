@@ -11,4 +11,4 @@ Pas de framework, pas de `<canvas>` : juste des `<div>`, des animations CSS et d
 Résultat : un jeu simple, pédagogique et facilement modifiable... mais avec des défauts notoires:
 
 - Performance: la charge CPU est démesurée par rapport au résultat ! Faire bouger des `<div>` avec JS & CSS est simple à écrire, mais n'est certainement pas une technique viable pour développer un jeu vidéo. Se pencher alors sur l'élément `<canvas>` et les frameworks comme Phaser, qui nécessitent plus d'expérience en programmation.
-- Stabilité: pour gérer les évènements dépendants du temps, on utillise les fonctions JS setInterval et setTimeOut. Les navigateurs ont différentes manières de gérer ces processus lorsque la fenêtre perd le focus, ce qui donne des bugs assez imprévisibles... Des librairies JS externes permettraient de corriger ce comportement.
+- Stabilité: pour gérer les évènements dépendants du temps, on utillise les fonctions JS `setInterval` et `setTimeOut`. Les navigateurs ont différentes manières de gérer ces processus lorsque la fenêtre perd le focus, ce qui donne des bugs assez imprévisibles... Des librairies JS externes permettraient de corriger ce comportement.
